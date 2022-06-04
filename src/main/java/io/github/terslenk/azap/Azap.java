@@ -1,20 +1,18 @@
-package io.github.terslenk.slimynether.SlimyNether;
+package io.github.terslenk.azap;
 
-import io.github.terslenk.slimynether.SlimyNether.utils.SlimyItems;
-import org.bukkit.generator.ChunkGenerator;
+import io.github.terslenk.azap.utils.Setup;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 
 import javax.annotation.Nonnull;
 
-public class SlimyNether extends JavaPlugin implements SlimefunAddon {
-    private static SlimyNether instance;
+public class Azap extends JavaPlugin implements SlimefunAddon {
+    private static Azap instance;
 
     @Override
     public void onEnable() {
-
-        SlimyItems.setup(this);
+        Setup.setup(this);
 
         instance = this;
     }
@@ -41,7 +39,7 @@ public class SlimyNether extends JavaPlugin implements SlimefunAddon {
         return this;
     }
 
-    public static SlimyNether getInstance() {
+    public static Azap getInstance() {
         return instance;
     }
 

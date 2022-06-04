@@ -1,6 +1,6 @@
-package io.github.terslenk.slimynether.SlimyNether.utils;
+package io.github.terslenk.azap.utils;
 
-import io.github.terslenk.slimynether.SlimyNether.SlimyNether;
+import io.github.terslenk.azap.Azap;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -23,42 +23,18 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.TreeMap;
 
 public final class Utils {
 
-    private static final NamespacedKey snkey = new NamespacedKey(SlimyNether.getInstance(), "fluffykey");
+    private static final NamespacedKey azapkey = new NamespacedKey(Azap.getInstance(), "azapkey");
     public static final DecimalFormat powerFormat = new DecimalFormat("###,###.##",
             DecimalFormatSymbols.getInstance(Locale.ROOT));
 
-    private final static TreeMap<Integer, String> map = new TreeMap<>();
-
-    static {
-
-        map.put(1000, "M");
-        map.put(900, "CM");
-        map.put(500, "D");
-        map.put(400, "CD");
-        map.put(100, "C");
-        map.put(90, "XC");
-        map.put(50, "L");
-        map.put(40, "XL");
-        map.put(10, "X");
-        map.put(9, "IX");
-        map.put(5, "V");
-        map.put(4, "IV");
-        map.put(1, "I");
-
-    }
 
     private Utils() {}
 
     public static void send(Player p, String message) {
-        p.sendMessage(ChatColor.GRAY + "[SlimyNether] " + ChatColors.color(message));
-    }
-
-    public static String multiBlockWarning() {
-        return "&cThis is a Multiblock machine!";
+        p.sendMessage(ChatColor.GOLD + "Azap "+ "&7&l>&r" + ChatColors.color(message));
     }
 
     public static ItemStack buildNonInteractable(Material material, @Nullable String name, @Nullable String... lore) {
@@ -78,13 +54,13 @@ public final class Utils {
             }
             NCMeta.setLore(lines);
         }
-        NCMeta.setCustomModelData(6969);
+        NCMeta.setCustomModelData(3169);
         nonClickable.setItemMeta(NCMeta);
         return nonClickable;
     }
 
     public static boolean checkNonInteractable(ItemStack item) {
-        return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData() == 6969;
+        return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData() == 3169;
     }
 
     public static boolean checkAdjacent(Block b, Material material) {
@@ -94,18 +70,10 @@ public final class Utils {
                 || b.getRelative(BlockFace.WEST).getType() == material;
     }
 
-    public static String toRoman(int number) {
-        int l = map.floorKey(number);
-        if (number == l) {
-            return map.get(number);
-        }
-        return map.get(l) + toRoman(number - l);
-    }
-
     public static ItemStack keyItem(ItemStack item) {
         ItemStack clone = item.clone();
         ItemMeta meta = clone.getItemMeta();
-        meta.getPersistentDataContainer().set(snkey, PersistentDataType.INTEGER, 1);
+        meta.getPersistentDataContainer().set(azapkey, PersistentDataType.INTEGER, 1);
         clone.setItemMeta(meta);
         return clone;
     }
@@ -113,7 +81,7 @@ public final class Utils {
     public static ItemStack unKeyItem(ItemStack item) {
         ItemStack clone = item.clone();
         ItemMeta meta = clone.getItemMeta();
-        meta.getPersistentDataContainer().remove(snkey);
+        meta.getPersistentDataContainer().remove(azapkey);
         clone.setItemMeta(meta);
         return clone;
     }
@@ -126,12 +94,12 @@ public final class Utils {
 
     // Don't use Slimefun's runsync
     public static BukkitTask runSync(Runnable r) {
-        return SlimyNether.getInstance() != null && SlimyNether.getInstance().isEnabled() ?
-                Bukkit.getScheduler().runTask(SlimyNether.getInstance(), r) : null;
+        return Azap.getInstance() != null && Azap.getInstance().isEnabled() ?
+                Bukkit.getScheduler().runTask(Azap.getInstance(), r) : null;
     }
 
     public static BukkitTask runSync(Runnable r, long delay) {
-        return SlimyNether.getInstance() != null && SlimyNether.getInstance().isEnabled() ?
-                Bukkit.getScheduler().runTaskLater(SlimyNether.getInstance(), r, delay) : null;
+        return Azap.getInstance() != null && Azap.getInstance().isEnabled() ?
+                Bukkit.getScheduler().runTaskLater(Azap.getInstance(), r, delay) : null;
     }
 }
