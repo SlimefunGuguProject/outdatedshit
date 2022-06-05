@@ -12,9 +12,10 @@ public class Azap extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
-        Setup.setup(this);
-
+        // Logic for enabling the plugin
         instance = this;
+
+        Setup.setup(this);
     }
 
     @Override
