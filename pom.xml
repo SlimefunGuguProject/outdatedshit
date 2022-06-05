@@ -7,6 +7,9 @@
     <artifactId>Azap</artifactId>
     <version>MODIFIED</version>
 
+    <properties>
+    </properties>
+
     <repositories>
         <repository>
             <id>paper-repo</id>
