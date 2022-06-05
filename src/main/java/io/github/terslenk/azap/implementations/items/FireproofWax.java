@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -42,19 +43,18 @@ public class FireproofWax extends SimpleSlimefunItem<ToolUseHandler> {
     @Nonnull
     @Override
     public ToolUseHandler getItemHandler() {
-        return (e,item,inventory,wax)-> {
-            Player p = e.getPlayer();
+        return (e,item,inventory,wax) -> {
+            Player player = e.getPlayer();
+            ItemStack mainhand = player.getInventory().getItemInMainHand();
+            ItemStack offhand = player.getInventory().getItemInOffHand();
 
-            ItemStack main = p.getInventory().getItemInMainHand();
-            ItemStack off = p.getInventory().getItemInOffHand();
+            if (player.getLocation().getWorld().getBiome(player.getLocation()) == Biome.NETHER_WASTES && mainhand.getAmount() == 1 && offhand.isSimilar(AddonItems.FIREPROOF_WAX)) {
+                offhand.setAmount(offhand.getAmount() - 1);
+                setFireproof(mainhand);
 
-            if (p.isSneaking() && main.getAmount() == 1 && off.equals(AddonItems.FIREPROOF_WAX)) {
-                off.setAmount(off.getAmount() - 1);
-                setFireproof(main);
-
-                Utils.send(p,"Item has been successfully waxed");
+                Utils.send(player,"Item has successfully waxed");
             } else {
-                Utils.send(p,"Item couldn't be waxed");
+                Utils.send(player,"Item couldn't be waxed");
             }
         };
     }
