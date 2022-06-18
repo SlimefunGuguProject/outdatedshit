@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
 public class Category {
-    public static final ItemGroup AZAP_MAIN = new ItemGroup(new NamespacedKey(Azap.getInstance(),"azap_main"),new CustomItemStack(Material.MAGMA_BLOCK,"&6Azap"));
+    public static final ItemGroup AZAP_MAIN = new ItemGroup(new NamespacedKey(Azap.getInstance(),"azap_main"),new CustomItemStack(Material.MAGMA_BLOCK,"&6狱刑"));
 
     public static void setup(Azap sn) {
         AZAP_MAIN.register(sn);
