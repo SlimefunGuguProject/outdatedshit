@@ -34,7 +34,7 @@ public final class Utils {
     private Utils() {}
 
     public static void send(Player p, String message) {
-        p.sendMessage(ChatColor.GOLD + "Azap "+ "&7&l>&r" + ChatColors.color(message));
+        p.sendMessage(ChatColor.GOLD + "狱刑 "+ "&7&l>&r" + ChatColors.color(message));
     }
 
     public static ItemStack buildNonInteractable(Material material, @Nullable String name, @Nullable String... lore) {
