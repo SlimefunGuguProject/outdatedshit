@@ -33,7 +33,7 @@ import java.util.List;
 
 public class FireproofWax extends SimpleSlimefunItem<ToolUseHandler> {
     private static final NamespacedKey FIREPROOFWAX_KEY = new NamespacedKey(Azap.getInstance(), "waxed");
-    private static final String FIREPROOFWAX_LORE = ChatColor.GOLD + "Waxed";
+    private static final String FIREPROOFWAX_LORE = ChatColor.GOLD + "已打蜡";
 
 
     public FireproofWax(ItemGroup category, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
@@ -52,9 +52,9 @@ public class FireproofWax extends SimpleSlimefunItem<ToolUseHandler> {
                 offhand.setAmount(offhand.getAmount() - 1);
                 setFireproof(mainhand);
 
-                Utils.send(player,"Item has successfully waxed");
+                Utils.send(player,"物品成功被打蜡");
             } else {
-                Utils.send(player,"Item couldn't be waxed");
+                Utils.send(player,"该物品无法被打蜡");
             }
         };
     }
